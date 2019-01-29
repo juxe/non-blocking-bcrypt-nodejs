@@ -1,5 +1,5 @@
 <h1>non-blocking-bcrypt-nodejs</h1>
-warper for <a href='https://www.npmjs.com/package/bcrypt-nodejs'>bcrypt-nodejs</a> that works on a difrrent thread to keep the crypto actions from starving the event loop.
+Wrapper for <a href='https://www.npmjs.com/package/bcrypt-nodejs'>bcrypt-nodejs</a> that works on a different thread to keep the crypto actions from starving the event loop.
 
 
 <h2>Limitations</h2>
@@ -47,9 +47,8 @@ const bcrypt = require('non-blocking-bcrypt-nodejs')
 (async () =>{
     
     try {
-       const {salt} = await nonBlockingBcrypt.genSalt();
-       const {hash} = await nonBlockingBcrypt.genHash(salt, 'sdsasdsafasf');
-    
+       const {salt} = await bcrypt.genSalt()
+       const {hash} = await bcrypt.genHash(salt, 'sdsasdsafasf')
     }
     catch(err){
         
@@ -70,8 +69,8 @@ const bcrypt = require('non-blocking-bcrypt-nodejs')
 (async () =>{
     
     try {
-       const {hash} = await nonBlockingBcrypt.saltAndHash( 'sdsasdsafasf');
-    
+       const {hash} = await bcrypt.saltAndHash('sdsasdsafasf')
+
     }
     catch(err){
         
@@ -94,9 +93,9 @@ const bcrypt = require('non-blocking-bcrypt-nodejs')
 (async () =>{
     
     try {
-       const {salt} = await nonBlockingBcrypt.genSalt();
-       const {hash} = await nonBlockingBcrypt.genHash(salt, 'sdsasdsafasf');
-       const match = await nonBlockingBcrypt.compare('sdsasdsafasf', hash);
+       const {salt} = await bcrypt.genSalt()
+       const {hash} = await bcrypt.genHash(salt, 'sdsasdsafasf')
+       const match = await bcrypt.compare('sdsasdsafasf', hash)
 
     }
     catch(err){
