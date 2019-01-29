@@ -33,13 +33,13 @@ exports.genSalt = (rounds = 10) => {
     return bcryptChildRequest({method: 'genSalt', rounds});
 };
 exports.genHash = (salt, password) => {
-    if (!salt || password) {
+    if (!salt || !password) {
         return Promise.reject('salt and password are required');
     }
     return bcryptChildRequest({method: 'genHash', salt, password});
 };
 exports.compare = async (password, hashedPassword) => {
-    if (!password || hashedPassword) {
+    if (!password || !hashedPassword) {
         return Promise.reject('password and hashedPassword are required');
     }
     return bcryptChildRequest({method: 'compare', password, hashedPassword});
@@ -56,6 +56,3 @@ exports.getRounds = async (encrypted) => {
     }
     return bcryptChildRequest({method: 'compare', encrypted});
 };
-
-
-
